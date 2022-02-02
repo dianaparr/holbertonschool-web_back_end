@@ -28,7 +28,6 @@ async def task_wait_n(n: int, max_delay: int) -> List[float]:
     # as_completed() to get tasks as they are completed, in the
     # order of completion.
     for res in asyncio.as_completed(tasks):
-        task = await res
-        all_delays.append(task)
+        all_delays.append(await res)
 
     return all_delays
