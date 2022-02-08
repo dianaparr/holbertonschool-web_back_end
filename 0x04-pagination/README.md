@@ -1,7 +1,9 @@
 # 0x04. Pagination
 
 ![gg](https://github.com/dianaparr/holbertonschool-web_back_end/blob/main/0x04-pagination/img/gato01.png)
+
 ![gggg](https://github.com/dianaparr/holbertonschool-web_back_end/blob/main/0x04-pagination/img/gato02.png)
+
 ![gggggg](https://github.com/dianaparr/holbertonschool-web_back_end/blob/main/0x04-pagination/img/gato03.png)
 
 ## Learning Objectives
