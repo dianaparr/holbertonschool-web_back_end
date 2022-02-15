@@ -1,0 +1,24 @@
+#!/usr/bin/env python3
+"""" Module named filtered_logger """
+
+import re
+from typing import List
+
+
+def filter_datum(fields: List[str], redaction: str,
+                 message: str, separator: str) -> str:
+    """ Function that returns the log message obfuscated
+
+    Args:
+        - fields: list of the strings. Represents all fields to obfuscate
+        - redaction: string. Represents by what the field willbe obfuscated
+        - message: string. Represents the log line
+        - separator: string. Represents by which character is separating all
+                     fields in the log line (message)
+
+    Return: a string -> message
+    """
+    for f in fields:
+        message = re.sub(rf'{f}=.+?{separator}',
+                         f'{f}={redaction}{separator}', message)
+    return message
