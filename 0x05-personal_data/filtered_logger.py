@@ -81,3 +81,24 @@ def filter_datum(fields: List[str], redaction: str,
         message = re.sub(rf'{f}=.+?{separator}',
                          f'{f}={redaction}{separator}', message)
     return message
+
+
+def main():
+    """ The function will obtain a database connection using get_db and
+        retrieve all rows in the users table and display each row under
+        a filtered format
+    """
+    db = get_db()
+    cursor = db.cursor()
+    cursor.execute("SELECT COUNT(*) FROM users;")
+    for row in cursor:
+        message = f"name={row[0]}; email={row[1]}; phone={row[2]}; " +\
+            f"ssn={row[3]}; password={row[4]}; ip={row[5]}; " +\
+            f"last_login={row[6]}; user_agent={row[7]};"
+        print(message)
+    cursor.close()
+    db.close()
+
+
+if __name__ == '__main__':
+    main()
