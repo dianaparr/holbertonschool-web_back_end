@@ -18,10 +18,9 @@ class Auth():
         if (excluded_paths[-1] != '/'):
             excluded_paths += '/'
         for e in excluded_paths:
-            if (e.endswith('*')):
-                if (path.startswith(e[:1])):
+            if (path[:e.find('*')] in e[:e.find('*')]):
                     return False
-        return False if path in excluded_paths else True
+        return True
 
     def authorization_header(self, request=None) -> str:
         """ Public method that return None.
