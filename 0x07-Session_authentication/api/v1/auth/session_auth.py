@@ -27,3 +27,17 @@ class SessionAuth(Auth):
         # the user_id is the value in the dictionary
         # user_id_by_session_id
         return new_session_id
+
+    def user_id_for_session_id(self, session_id: str = None) -> str:
+        """ Instance method that returns a User ID
+            based on a Session ID.
+
+            Return: the User ID
+        """
+        if (session_id is None or type(session_id) is not str):
+            return None
+
+        # for accessing in a dictionary a value based on key.
+        user_ID: str = self.user_id_by_session_id.get(session_id)
+
+        return user_ID
