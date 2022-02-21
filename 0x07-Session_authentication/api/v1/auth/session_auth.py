@@ -3,8 +3,9 @@
 
 
 from api.v1.auth.auth import Auth
-from typing import Dict
+from typing import Dict, TypeVar
 from uuid import UUID, uuid4
+from models.user import User
 
 
 class SessionAuth(Auth):
@@ -41,3 +42,17 @@ class SessionAuth(Auth):
         user_ID: str = self.user_id_by_session_id.get(session_id)
 
         return user_ID
+
+    def current_user(self, request=None):
+        """ Instance method that returns a User instance based on
+            a cookie value.
+
+            Return: get a User based on his session ID.
+        """
+        new_session_id: str = self.session_cookie(request)
+        if new_session_id is None:
+            return None
+        user_ID: str = self.user_id_for_session_id(new_session_id)
+        get_user: TypeVar('User') = User.get(user_ID)
+
+        return get_user
