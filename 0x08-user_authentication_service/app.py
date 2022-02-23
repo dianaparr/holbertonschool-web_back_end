@@ -2,14 +2,30 @@
 """ Module called app """
 
 
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
+from auth import Auth
+
+
 app = Flask(__name__)
+AUTH = Auth()
 
 
 @app.route('/', methods=['GET'], strict_slashes=False)
 def message_welcome():
     """ Return a JSON payload of the welcome message """
     return jsonify({"message": "Bienvenue"})
+
+
+@app.route('/users', methods=['POST'], strict_slashes=False)
+def register_user():
+    """End-point to register a user """
+    email = request.form.get('email')
+    password = request.form.get('password')
+    try:
+        AUTH.register_user(email, password)
+        return jsonify({"email": f"{email}", "message": "user created"}), 200
+    except Exception:
+        return jsonify({"message": "email already registered"}), 400
 
 
 if __name__ == "__main__":
