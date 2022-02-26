@@ -2,6 +2,7 @@
 """ Module called app """
 
 
+from doctest import ELLIPSIS_MARKER
 from flask import Flask, jsonify, request, abort, redirect
 from auth import Auth
 
@@ -54,6 +55,17 @@ def logout_sessions():
     if user_session:
         AUTH.destroy_session(user_session.id)
         return redirect('/')
+    else:
+        abort(403)
+
+
+@app.route('/profile', methods=['GET'], strict_slashes=False)
+def get_user_profile():
+    """ Implement a profile function to respond to the GET /profile route  """
+    session_id = request.cookies.get('session_id')
+    user_session = AUTH.get_user_from_session_id(session_id)
+    if user_session:
+        return jsonify({"email": user_session.email}), 200
     else:
         abort(403)
 
