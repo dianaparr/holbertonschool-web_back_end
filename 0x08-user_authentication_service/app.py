@@ -50,8 +50,9 @@ def logout_sessions():
         the DELETE /sessions route
     """
     session_id = request.cookies.get('session_id')
-    if AUTH.get_user_from_session_id(session_id):
-        AUTH.destroy_session(id)
+    user_session = AUTH.get_user_from_session_id(session_id)
+    if user_session:
+        AUTH.destroy_session(user_session.id)
         return redirect('/')
     else:
         abort(403)
