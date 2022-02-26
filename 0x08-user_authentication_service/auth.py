@@ -107,7 +107,7 @@ class Auth:
         if reset_token is None or password is None:
             return None
         try:
-            user_session = self._db.find_user_by(password)
+            user_session = self._db.find_user_by(reset_token=reset_token)
         except NoResultFound:
             raise ValueError
         hashed_password = _hash_password(password)
