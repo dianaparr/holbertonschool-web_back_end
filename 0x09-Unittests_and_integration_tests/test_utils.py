@@ -48,8 +48,8 @@ class TestGetJson(unittest.TestCase):
     """ TestGetJson class that inherits from unittest.TestCase.
     """
     @parameterized.expand([
-        ("http://example.com", {"payload": True}),
-        ("http://holberton.io", {"payload": False})])
+        "http://example.com", {"payload": True},
+        "http://holberton.io", {"payload": False}])
     @patch('utils.get_json')
     def test_get_json(self, test_url, test_payload):
         """ Method to test that utils.get_json returns
