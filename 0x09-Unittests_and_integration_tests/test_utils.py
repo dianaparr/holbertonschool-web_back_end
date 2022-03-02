@@ -23,3 +23,21 @@ class TestAccessNestedMap(unittest.TestCase):
         """ Method to test that the method returns the access
             nested map with key path """
         self.assertEqual(access_nested_map(nested_map, path), expected)
+
+    @parameterized.expand([
+        ({}, ("a",), 'a'),
+        ({"a": 1}, ("a", "b"), 'b')])
+    def test_access_nested_map_exception(self, nested_map, path, expected_err):
+        """ Method to test that the method returns the access
+            nested map with key path. Use the assertRaises context manager
+            to test that a KeyError is raised. Param expand example:
+
+            Traceback (most recent call last):
+                File "<stdin>", line 1, in <module>
+                File "<stdin>", line 4, in access_nested_map
+            KeyError: 'b'
+        """
+        with self.assertRaises(KeyError) as key_err:
+            access_nested_map(nested_map, path)
+            the_exception = key_err.exception
+            self.assertEqual(expected_err, the_exception)
