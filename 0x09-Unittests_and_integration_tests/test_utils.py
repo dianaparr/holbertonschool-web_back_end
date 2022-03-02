@@ -3,7 +3,7 @@
 
 import unittest
 from parameterized import parameterized
-from utils import access_nested_map, get_json
+from utils import access_nested_map, get_json, memoize
 from unittest.mock import patch, Mock
 
 
@@ -65,3 +65,31 @@ class TestGetJson(unittest.TestCase):
             mock_cls.json.assert_called_once()
             # Test that the output of get_json is equal to test_payload.
             self.assertEqual(res, test_payload)
+
+
+class TestMemoize(unittest.TestCase):
+    """ TestMemoize(unittest.TestCase) class with a test_memoize method
+
+        More about memoization and decorators:
+            https://python-course.eu/advanced-python/memoization-decorators.php
+    """
+    def test_memoize(self):
+        """ Method to test memoize """
+        class TestClass:
+            """ class test """
+
+            def a_method(self):
+                """ a method test """
+                return 42
+
+            @memoize
+            def a_property(self):
+                """ other method test """
+                return self.a_method()
+
+        with patch.object(TestClass,
+                          'a_method', return_value=42) as mock_method:
+            product_cls = TestClass()
+            product_cls.a_property
+            product_cls.a_property
+            mock_method.assert_called_once()
