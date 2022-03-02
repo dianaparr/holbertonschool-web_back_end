@@ -3,7 +3,8 @@
 
 import unittest
 from parameterized import parameterized
-from utils import access_nested_map
+from utils import access_nested_map, get_json
+from unittest.mock import patch, Mock
 
 
 class TestAccessNestedMap(unittest.TestCase):
@@ -41,3 +42,26 @@ class TestAccessNestedMap(unittest.TestCase):
             access_nested_map(nested_map, path)
             the_exception = key_err.exception
             self.assertEqual(expected_err, the_exception)
+
+
+class TestGetJson(unittest.TestCase):
+    """ TestGetJson class that inherits from unittest.TestCase.
+    """
+    @parameterized.expand([
+        ("http://example.com", {"payload": True}),
+        ("http://holberton.io", {"payload": False})])
+    @patch('utils.get_json')
+    def test_get_json(self, test_url, test_payload):
+        """ Method to test that utils.get_json returns
+            the expected result
+        """
+        # configure the value returned by calling the mock with Mock class:
+        mock_cls = Mock()
+        mock_cls.json.return_value = test_payload
+        with patch('requests.get', return_value=mock_cls):
+            res = get_json(test_url)
+            # Test that the mocked get method was called exactly once
+            # (per input) with test_url as argument.
+            mock_cls.json.assert_called_once()
+            # Test that the output of get_json is equal to test_payload.
+            self.assertEqual(res, test_payload)
