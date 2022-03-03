@@ -24,10 +24,22 @@ class TestGithubOrgClient(unittest.TestCase):
         mock_url.assert_called_once_with(endpoint)
 
     def test_public_repos_url(self):
-        """ """
+        """ Method to unit-test GithubOrgClient._public_repos_url """
         mock_url = "www.someurl.com"
         the_payload = {"repos_url": mock_url}
         with patch('client.GithubOrgClient.org',
                    PropertyMock(return_value=the_payload)):
             res = GithubOrgClient("somewhere")
             self.assertEqual(res._public_repos_url, mock_url)
+
+    @patch("client.get_json")
+    def test_public_repos(self, repo_mock):
+        """ To unit-test GithubOrgClient.public_repos. """
+        the_payload = [{"name": "someone"}, {"name": "Betty"}]
+        repo_mock.return_value = the_payload
+        with patch("client.GithubOrgClient._public_repos_url",
+                   new_callable=PropertyMock) as mock_client:
+            test_name = GithubOrgClient("someone").public_repos()
+            self.assertEqual(test_name, ['someone', 'Betty'])
+            mock_client.assert_called_once()
+            repo_mock.assert_called_once()
