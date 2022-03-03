@@ -2,10 +2,11 @@
 """ Test module named test_client """
 
 import unittest
-from parameterized import parameterized
+from parameterized import parameterized, parameterized_class
 from utils import access_nested_map, get_json, memoize
 from unittest.mock import patch, PropertyMock
 from client import GithubOrgClient
+from fixtures import TEST_PAYLOAD
 
 
 class TestGithubOrgClient(unittest.TestCase):
@@ -52,3 +53,24 @@ class TestGithubOrgClient(unittest.TestCase):
         """ To unit-test GithubOrgClient.has_license. """
         self.assertEqual(
             GithubOrgClient.has_license(repo, key), expected_return)
+
+
+@parameterized_class([{"org_payload": TEST_PAYLOAD[0][0],
+                       "repos_payload": TEST_PAYLOAD[0][1],
+                       "expected_repos": TEST_PAYLOAD[0][2],
+                       "apache2_repos": TEST_PAYLOAD[0][3]}])
+class TestIntegrationGithubOrgClient(unittest.TestCase):
+    """ GithubOrgClient.public_repos integration tests """
+    @classmethod
+    def setUpClass(cls):
+        """ The setupClass should mock requests.get to return example
+            payloads found in the fixtures. """
+        cls.get_patcher = patch('requests.get', side_effect=[
+            cls.org_payload, cls.repos_payload
+        ])
+        cls.mock_test = cls.get_patcher.start()
+
+    @classmethod
+    def tearDownClass(cls):
+        """ Class method to stop the patcher """
+        cls.get_patcher.stop()
