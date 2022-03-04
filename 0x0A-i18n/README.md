@@ -12,7 +12,7 @@
 
 [**0. Basic Flask app:**](https://github.com/dianaparr/holbertonschool-web_back_end/blob/main/0x0A-i18n/0-app.py)
 
-First you will setup a basic Flask app in 0-app.py. Create a single / route and an index.html template that simply outputs “Welcome to Holberton” as page title (<title>) and “Hello world” as header (<h1>).
+First you will setup a basic Flask app in 0-app.py. Create a single / route and an index.html template that simply outputs “Welcome to Holberton” as page title (`<title>`) and “Hello world” as header (`<h1>`).
 
 <br/>
 
