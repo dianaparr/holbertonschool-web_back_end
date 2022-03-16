@@ -52,16 +52,21 @@ def replay(method: Callable):
         count = count.decode('utf-8')
     except Exception:
         count = 0
-    input_list = re.lrange(key + ":inputs", 0, -1)
-    output_list = re.lrange(key + ":inputs", 0, -1)
-    zip_list = list(zip(input_list, output_list))
-
     print("{} was called {} times:".format(key, count))
 
-    for k, v in zip_list:
-        res = print("{}(*{}}) -> {}".format(
-            key, k.decode('utf-8'), v.decode('utf-8')
-        ))
+    input_list = re.lrange(key + ":inputs", 0, -1)
+    output_list = re.lrange(key + ":inputs", 0, -1)
+
+    for k, v in zip(input_list, output_list):
+        try:
+            k = k.decode('utf-8')
+        except Exception:
+            k = ""
+        try:
+            v = v.decode('utf-8')
+        except Exception:
+            v = ""
+        print("{}(*{}) -> {}".format(key, k, v))
 
 
 class Cache:
