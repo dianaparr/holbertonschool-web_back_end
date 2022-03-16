@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """ Module to create Cache class """
 
-from ast import arg
 import redis
 from typing import Optional, Union, Callable
 import uuid
@@ -52,10 +51,10 @@ def replay(method: Callable):
         count = count.decode('utf-8')
     except Exception:
         count = 0
-    print(f'{key} was called {count} times:')
+    print("{} was called {} times:".format(key, count))
 
     input_list = re.lrange(key + ":inputs", 0, -1)
-    output_list = re.lrange(key + ":inputs", 0, -1)
+    output_list = re.lrange(key + ":outputs", 0, -1)
 
     for k, v in zip(input_list, output_list):
         try:
@@ -66,7 +65,7 @@ def replay(method: Callable):
             v = v.decode('utf-8')
         except Exception:
             v = ""
-        print(f'{key}(*{k}) -> {v}')
+        print("{}(*{}) -> {}".format(key, k, v))
 
 
 class Cache:
