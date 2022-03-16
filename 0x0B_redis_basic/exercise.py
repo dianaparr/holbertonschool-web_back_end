@@ -52,7 +52,7 @@ def replay(method: Callable):
         count = count.decode('utf-8')
     except Exception:
         count = 0
-    print("{} was called {} times:".format(key, count))
+    print(f'{key} was called {count} times:')
 
     input_list = re.lrange(key + ":inputs", 0, -1)
     output_list = re.lrange(key + ":inputs", 0, -1)
@@ -66,7 +66,7 @@ def replay(method: Callable):
             v = v.decode('utf-8')
         except Exception:
             v = ""
-        print("{}(*{}) -> {}".format(key, k, v))
+        print(f'{key}(*{k}) -> {v}')
 
 
 class Cache:
