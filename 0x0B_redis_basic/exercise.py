@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """ Module to create Cache class """
 
+from ast import arg
 import redis
 from typing import Optional, Union, Callable
 import uuid
@@ -23,6 +24,23 @@ def count_calls(method: Callable) -> Callable:
     return wrapper
 
 
+def call_history(method: Callable) -> Callable:
+    """ Define a call_history decorator to store the history
+        of inputs and outputs for a particular function
+    """
+    key = method.__qualname__
+    @wraps(method)
+    def wrapper(self, *args, **kwargs):
+        """ Useful to use functool.wraps to conserve the
+            original function’s name, docstring, etc.
+        """
+        self._redis.rpush(key + ":inputs", str(args))
+        res_output = method(self, *args, **kwargs)
+        self._redis.rpush(key + ":outputs", str(res_output))
+        return res_output
+    return wrapper
+
+
 class Cache:
     """ Create a Cache class """
     def __init__(self):
@@ -35,6 +53,7 @@ class Cache:
         self._redis.flushdb()
 
     @count_calls
+    @call_history
     def store(self, data: Union[str, bytes, int, float]) -> str:
         """ The method should:
             - generate a random key
