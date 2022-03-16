@@ -57,9 +57,15 @@ def replay(method: Callable):
     output_list = re.lrange(key + ":outputs", 0, -1)
 
     for k, v in zip(input_list, output_list):
-        print("{}(*{}}) -> {}".format(
-            key, k.decode('utf-8'), v.decode('utf-8')
-        ))
+        try:
+            k = k.decode('utf-8')
+        except Exception:
+            k = ""
+        try:
+            v = v.decode('utf-8')
+        except Exception:
+            v = ""
+        print("{}(*{}) -> {}".format(key, k, v))
 
 
 class Cache:
