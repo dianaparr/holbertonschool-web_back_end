@@ -1,4 +1,6 @@
---Script that creates a stored procedure
+-- Script that creates a stored procedure
+-- Add task 7
+
 DELIMITER //
 CREATE PROCEDURE ComputeAverageScoreForUser(
     IN `user_id` INT
