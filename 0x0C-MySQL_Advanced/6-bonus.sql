@@ -1,4 +1,6 @@
---Script that creates a stored procedure
+-- Script that creates a stored procedure
+-- Add task 6
+
 DELIMITER //
 CREATE PROCEDURE AddBonus(
     IN `user_id` INT,
