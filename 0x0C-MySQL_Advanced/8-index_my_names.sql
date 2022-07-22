@@ -1,3 +1,4 @@
---Script that creates an index
+-- Script that creates an index
+-- Add task 8
 
 CREATE INDEX idx_name_first ON names (name(1));
