@@ -1,4 +1,6 @@
---Script that creates a trigger
+-- Script that creates a trigger
+-- Add task 5
+
 DELIMITER //
 CREATE TRIGGER `upd_email_check` BEFORE UPDATE ON `users`
 FOR EACH ROW
