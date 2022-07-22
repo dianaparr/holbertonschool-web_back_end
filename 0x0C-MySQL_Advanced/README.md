@@ -1009,7 +1009,7 @@ Write a SQL script that creates a stored procedure `ComputeAverageWeightedScoreF
     2   Jeanne  79
     bob@dylan:~$ 
 
-**File**: :page_facing_up: [100-average_weighted_score.sql](https://github.com/dianaparr/holbertonschool-web_back_end/blob/main/0x0C-MySQL_Advanced/100-average_weighted_score.sql)
+**File**: :page_facing_up: [101-average_weighted_score.sql](https://github.com/dianaparr/holbertonschool-web_back_end/blob/main/0x0C-MySQL_Advanced/101-average_weighted_score.sql)
 
 <br/>
 
