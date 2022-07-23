@@ -15,6 +15,6 @@ BEGIN
         )
     AS `usr_av`
     SET `users`.`average_score` = `usr_av`.`weight_avg`
-    WHERE `users`.`id` = `usr_av`.`id`
+    WHERE `users`.`id` = `usr_av`.`id`;
 END;
 //
