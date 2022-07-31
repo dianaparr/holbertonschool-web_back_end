@@ -1,0 +1,3 @@
+// Script that lists all list_databases
+// Add task zero
+show dbs
