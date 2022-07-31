@@ -1,0 +1,3 @@
+// Script that creates or uses the new database
+// Add task one
+use my_db
