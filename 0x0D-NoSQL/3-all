@@ -1,0 +1,3 @@
+// Script that lists all documents in the collection
+// Add task three
+db.school.find()
