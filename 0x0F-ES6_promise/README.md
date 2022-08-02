@@ -315,7 +315,7 @@ Example:
 
 ### :red_circle: Advanced
 
-**:ten:. Await / Async**
+**:one::zero:. Await / Async**
 
 Import `uploadPhoto` and `createUser` from `utils.js`
 
