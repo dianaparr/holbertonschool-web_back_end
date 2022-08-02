@@ -1,8 +1,8 @@
 import { createUser, uploadPhoto } from './utils';
 
-async function handleProfileSignup() {
-  const promise1 = await createUser();
-  const promise2 = await uploadPhoto();
+function handleProfileSignup() {
+  const promise1 = createUser();
+  const promise2 = uploadPhoto();
 
   return Promise.all([promise1, promise2])
     .then((value) => {
