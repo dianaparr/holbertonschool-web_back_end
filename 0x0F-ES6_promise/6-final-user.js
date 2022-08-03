@@ -3,7 +3,7 @@
 import signUpUser from './4-user-promise';
 import uploadPhoto from './5-photo-reject';
 
-async function handleProfileSignup(firstName, lastName, fileName) {
+export default async function handleProfileSignup(firstName, lastName, fileName) {
   const signUser = await signUpUser(firstName, lastName);
   let upPhoto;
   try {
@@ -17,5 +17,3 @@ async function handleProfileSignup(firstName, lastName, fileName) {
     { value: upPhoto, status: 'reject' },
   ];
 }
-
-export default handleProfileSignup;
