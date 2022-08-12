@@ -2,3 +2,4 @@ babel.config.js
 *.json
 node_modules/
 .eslintrc.js
+*-main.js
