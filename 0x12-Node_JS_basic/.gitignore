@@ -3,3 +3,4 @@ babel.config.js
 node_modules/
 .eslintrc.js
 *-main.js
+*-main_*.js
