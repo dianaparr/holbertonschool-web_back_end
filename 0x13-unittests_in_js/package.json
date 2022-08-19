@@ -2,12 +2,12 @@
     "name": "Task 0",
     "version": "1.0.0",
     "description": "Basic test with Mocha and Node assertion library",
-    "main": "",
+    "main": "0-calcul.js",
     "scripts": {
         "test": "./node_modules/mocha/bin/mocha.js"
     },
     "dependencies": {
-        "mocha": "^10.0.0"
+        "mocha": "^8.2.1"
     },
     "repository": {
         "type": "git",
