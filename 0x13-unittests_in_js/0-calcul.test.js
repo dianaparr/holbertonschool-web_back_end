@@ -20,4 +20,9 @@ describe('calculateNumber', () => {
     assert.strictEqual(isNaN(calculateNumber(9.8)), true);
     assert.strictEqual(isNaN(calculateNumber(7)), true);
   });
+
+  it('negative numbers', () => {
+    assert.strictEqual(calculateNumber(-1, 1), 0);
+    assert.strictEqual(calculateNumber(-1, -1), -2);
+  });
 });
