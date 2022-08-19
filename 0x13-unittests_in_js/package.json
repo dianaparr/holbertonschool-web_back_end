@@ -1,5 +1,5 @@
 {
-    "name": "Task 0",
+    "name": "Task_0",
     "version": "1.0.0",
     "description": "Basic test with Mocha and Node assertion library",
     "main": "0-calcul.js",
@@ -10,15 +10,5 @@
         "chai": "^4.2.0",
         "mocha": "^8.2.1",
         "sinon": "^9.2.3"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/dianaparr/holbertonschool-web_back_end/tree/main/0x13-unittests_in_js"
-    },
-    "keywords": [
-        "mocha",
-        "npm",
-        "test"
-    ],
-    "author": "Diana Parra"
+    }
 }
