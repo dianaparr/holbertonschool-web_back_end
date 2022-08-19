@@ -19,6 +19,7 @@ describe('calculateNumber', () => {
   it('must be a number, returns it rounded', () => {
     assert.strictEqual(isNaN(calculateNumber(9.8)), true);
     assert.strictEqual(isNaN(calculateNumber(7)), true);
+    assert.strictEqual(isNaN(calculateNumber()), true);
   });
 
   it('negative numbers', () => {
