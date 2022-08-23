@@ -1,13 +1,13 @@
-import redis from "redis";
-import { promisify } from "util";
+import redis from 'redis';
+import { promisify } from 'util';
 
 const cliRedis = redis.createClient();
 const get = promisify(cliRedis.get).bind(cliRedis);
 
-cliRedis.on("connect", () => {
-  console.log("Redis client connected to the server");
+cliRedis.on('connect', () => {
+  console.log('Redis client connected to the server');
 });
-cliRedis.on("error", (err) => {
+cliRedis.on('error', (err) => {
   console.log(`Redis client not connected to the server: ${err.message}`);
 });
 
@@ -23,6 +23,6 @@ const displaySchoolValue = async (schoolName) => {
   }
 };
 
-displaySchoolValue("Holberton");
-setNewSchool("HolbertonSanFrancisco", "100");
-displaySchoolValue("HolbertonSanFrancisco");
+displaySchoolValue('Holberton');
+setNewSchool('HolbertonSanFrancisco', '100');
+displaySchoolValue('HolbertonSanFrancisco');
