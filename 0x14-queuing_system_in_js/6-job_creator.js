@@ -1,7 +1,7 @@
 const kue = require('kue'),
   queue = kue.createQueue();
 
-var jobCreator = queue
+const jobCreator = queue
   .create('push_notification_code', {
     phoneNumber: '33331568889',
     message: 'This is a notification message.',
