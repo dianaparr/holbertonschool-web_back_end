@@ -4,7 +4,7 @@ const kue = require('kue'),
 const jobCreator = queue
   .create('push_notification_code', {
     phoneNumber: '33331568889',
-    message: 'This is a notification message.',
+    message: 'This is the code to verify your account',
   })
   .save((err) => {
     if (!err) console.log(`Notification job created: ${jobCreator.id}`);
