@@ -57,10 +57,10 @@ for (const aJob of jobs) {
     .on('complete', () =>
       console.log(`Notification job ${jobCreate.id} completed`)
     )
-    .on('failed', () =>
+    .on('failed', (err) =>
       console.log(`Notification job ${jobCreate.id} failed: ${err}`)
     )
     .on('progress', (percentage) =>
-      console.log(`Notification job ${jobCreate.id} ${percentage}% complete`)
+      console.log(`Notification job #${jobCreate.id} ${percentage}% complete`)
     );
 }
